@@ -21,7 +21,7 @@ USE `mydb` ;
 -- -----------------------------------------------------
 -- Table `mydb`.`Proyecto`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Proyecto` (
+CREATE TABLE IF NOT EXISTS `mydb`.`project` (
   `IDproyecto` VARCHAR(45) NOT NULL,
   `nombreProyecto` INT NOT NULL,
   `cantdadUsuarios` INT NOT NULL,
@@ -36,7 +36,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`Calendario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Calendario` (
+CREATE TABLE IF NOT EXISTS `mydb`.`calendar` (
   `IDcalendario` VARCHAR(45) NOT NULL,
   `año` INT NOT NULL,
   `mes` INT NOT NULL,
@@ -50,7 +50,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`usuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`usuario` (
+CREATE TABLE IF NOT EXISTS `mydb`.`user` (
   `IDusuario` VARCHAR(45) NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   `tipoUsuario` VARCHAR(45) NOT NULL,
@@ -61,7 +61,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`Grafica`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Grafica` (
+CREATE TABLE IF NOT EXISTS `mydb`.`gantt_plot` (
   `IDgrafica` VARCHAR(45) NOT NULL,
   `tiempo` FLOAT NOT NULL,
   PRIMARY KEY (`IDgrafica`))
@@ -71,7 +71,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`tarea`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tarea` (
+CREATE TABLE IF NOT EXISTS `mydb`.`task` (
   `IDtarea` VARCHAR(45) NOT NULL,
   `fechaInicio` FLOAT NOT NULL,
   `fechaFin` FLOAT NOT NULL,
@@ -87,7 +87,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`usuario_has_tarea`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`usuario_has_tarea` (
+CREATE TABLE IF NOT EXISTS `mydb`.`user_has_task` (
   `usuario_IDusuario` VARCHAR(45) NOT NULL,
   `tarea_IDtarea` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`usuario_IDusuario`, `tarea_IDtarea`),
