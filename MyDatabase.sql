@@ -22,14 +22,14 @@ USE `mydb` ;
 -- Table `mydb`.`Proyecto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`project` (
-  `IDproyecto` VARCHAR(45) NOT NULL,
-  `nombreProyecto` INT NOT NULL,
+  `project_id` VARCHAR(45) NOT NULL,
+  `project_name` INT NOT NULL,
   `cantdadUsuarios` INT NOT NULL,
-  `lider` VARCHAR(45) NOT NULL,
-  `fechaInicio` FLOAT NOT NULL,
-  `fechaFin` VARCHAR(45) NULL,
-  `Prioridad` TINYINT NULL,
-  PRIMARY KEY (`IDproyecto`))
+  `project_manager` VARCHAR(45) NOT NULL,
+  `project_start_date` FLOAT NOT NULL,
+  `project_end_date` VARCHAR(45) NULL,
+  `project_priority` TINYINT NULL,
+  PRIMARY KEY (`project_id`))
 ENGINE = InnoDB;
 
 
@@ -37,13 +37,13 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Calendario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`calendar` (
-  `IDcalendario` VARCHAR(45) NOT NULL,
-  `año` INT NOT NULL,
-  `mes` INT NOT NULL,
-  `dia` INT NOT NULL,
-  `minutos` FLOAT NOT NULL,
-  `horas` FLOAT NOT NULL,
-  PRIMARY KEY (`IDcalendario`))
+  `calendar_id` VARCHAR(45) NOT NULL,
+  `year` INT NOT NULL,
+  `moth` INT NOT NULL,
+  `day` INT NOT NULL,
+  `minutes` FLOAT NOT NULL,
+  `houres` FLOAT NOT NULL,
+  PRIMARY KEY (`calendar_id`))
 ENGINE = InnoDB;
 
 
@@ -51,20 +51,20 @@ ENGINE = InnoDB;
 -- Table `mydb`.`usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`user` (
-  `IDusuario` VARCHAR(45) NOT NULL,
-  `nombre` VARCHAR(45) NOT NULL,
-  `tipoUsuario` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`IDusuario`))
+  `user_id` VARCHAR(45) NOT NULL,
+  `_user_name` VARCHAR(45) NOT NULL,
+  `user_type` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`user_id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Grafica`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`gantt_plot` (
-  `IDgrafica` VARCHAR(45) NOT NULL,
-  `tiempo` FLOAT NOT NULL,
-  PRIMARY KEY (`IDgrafica`))
+CREATE TABLE IF NOT EXISTS `mydb`.`gantt_chart` (
+  `gantt_chart_id` VARCHAR(45) NOT NULL,
+  `gantt_chart_period` FLOAT NOT NULL,
+  PRIMARY KEY (`gantt_chart_id`))
 ENGINE = InnoDB;
 
 
@@ -72,15 +72,15 @@ ENGINE = InnoDB;
 -- Table `mydb`.`tarea`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`task` (
-  `IDtarea` VARCHAR(45) NOT NULL,
-  `fechaInicio` FLOAT NOT NULL,
-  `fechaFin` FLOAT NOT NULL,
-  `nombreTareas` VARCHAR(45) NOT NULL,
-  `estado` INT NULL,
-  `tipoEstado` VARCHAR(45) NULL,
-  `UsuarioAsignado` VARCHAR(45) NULL,
-  `prioridad` TINYINT NULL,
-  PRIMARY KEY (`IDtarea`))
+  `task_id` VARCHAR(45) NOT NULL,
+  `task_start_date` FLOAT NOT NULL,
+  `task_end_date` FLOAT NOT NULL,
+  `task_name` VARCHAR(45) NOT NULL,
+  `task_state` INT NULL,
+  `task_state_type` VARCHAR(45) NULL,
+  `task_assigned_user` VARCHAR(45) NULL,
+  `task_priority` TINYINT NULL,
+  PRIMARY KEY (`task_id`))
 ENGINE = InnoDB;
 
 
@@ -88,17 +88,17 @@ ENGINE = InnoDB;
 -- Table `mydb`.`usuario_has_tarea`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`user_has_task` (
-  `usuario_IDusuario` VARCHAR(45) NOT NULL,
-  `tarea_IDtarea` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`usuario_IDusuario`, `tarea_IDtarea`),
-  CONSTRAINT `fk_usuario_has_tarea_usuario`
-    FOREIGN KEY (`usuario_IDusuario`)
-    REFERENCES `mydb`.`usuario` (`IDusuario`)
+  `user_user_id` VARCHAR(45) NOT NULL,
+  `task_task_id` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`user_user_id`, `task_task_id`),
+  CONSTRAINT `fk_user_has_task_user`
+    FOREIGN KEY (`user_user_id`)
+    REFERENCES `mydb`.`user` (`user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_usuario_has_tarea_tarea1`
-    FOREIGN KEY (`tarea_IDtarea`)
-    REFERENCES `mydb`.`tarea` (`IDtarea`)
+  CONSTRAINT `fk_user_has_task_task1`
+    FOREIGN KEY (`task_task_id`)
+    REFERENCES `mydb`.`task` (`task_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
